@@ -11,9 +11,7 @@ Add the service provider to your `config/app.php` file:
 ```php
 
     'providers'     => [
-        /*
-         * Package Service Providers...
-         */
+        // ...
         Rayblair\NumverifyWrapper\NumverifyServiceProvider::class,
 
     ],
@@ -24,6 +22,7 @@ Add the facade to your `config/app.php` file:
 ```php
 
     'aliases'       => [
+        // ...
         'Numverify' => Rayblair\NumverifyWrapper\Facades\Numverify::class,
     ],
 
@@ -31,7 +30,7 @@ Add the facade to your `config/app.php` file:
 #### Adding Api Key
 
 If you haven't already go to http://numverify.com and register for an api key.
-Publish the config file then either replace the environment variable with your api key or place within your .env as "NUMVERIFY_API_KEY"
+Publish the config file then either replace the environment variable with your api key or place within your .env as "NUMVERIFY_API_KEY=<Numverify Api Key>"
 
 `php artisan vendor:publish`
 
@@ -52,16 +51,17 @@ Numverify::setNumber("1234567890");
 Numverify::setCountryCode("GB");
 ```
 
-###### Valid and return api results
+###### Validate and return api results
 
 ```php
-Numverify::valid();
+Numverify::verify();
 ```
 
-###### Return if valid
+###### Just return validation result
 
 ```php
 // Returns either turn or false depending on api result
+
 Numverify::isValid();
 ```
 
@@ -78,8 +78,10 @@ Numverify::setNumber("1234567890")->setCountryCode("GB")->verify();
 
 require_once "vendor/autoload.php";
 
-$data['api_key'] = "<Numverify Api Key}";
+$data['api_key'] = "<Numverify Api Key>";
+
 $numverify = new Rayblair\NumverifyWrapper\NumverifyService($data);
+
 $numverify->setNumber("1234567890")->setCountryCode("GB")->verify();
 
 ```
