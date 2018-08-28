@@ -1,0 +1,28 @@
+{
+    "name": "rayblair/numverifywrapper",
+    "description": "A Wrapper for Number Verification Api's such as numverify",
+    "version": "1.0",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ray Blair",
+            "email": "rayblair06@hotmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rayblair\\NumverifyWrapper\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rayblair\\NumverifyWrapper\\NumverifyServiceProvider"
+            ]
+        }
+    }
+}
