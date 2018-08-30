@@ -8,8 +8,11 @@ class NumverifyService extends BaseService {
         parent::__construct($data);
     }
 
-    public function verify()
+    public function verify($number = null, $country_code = null)
     {
+        $this->number = $number ?? $this->number;
+        $this->country_code = $country_code ?? $this->country_code;
+
         $response = $this->get();
         $this->clearQuery();
 
