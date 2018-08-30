@@ -30,31 +30,42 @@ Add the facade to your `config/app.php` file:
 #### Adding Api Key
 
 If you haven't already go to http://numverify.com and register for an api key.
-Publish the config file then either replace the environment variable with your api key or place within your .env as "NUMVERIFY_API_KEY=<Numverify Api Key>"
-
-`php artisan vendor:publish`
-
-#### Edit config file
-
+Publish the config file `php artisan vendor:publish` then either replace the environment variable within the config or place your api key within your .env as "NUMVERIFY_API_KEY=<Numverify Api Key>"
 
 ### Laravel
 
-###### Set Number to valid
+###### Setting variables and verify
+
+You can set the object variables for number and country code with the below methods then run the verify() method to verify the set values.
 
 ```php
 Numverify::setNumber("1234567890");
-```
-
-###### Set Country Code for validation
-
-```php
 Numverify::setCountryCode("GB");
+Numverify::verify();
 ```
 
-###### Validate and return api results
+Alternatively you can stack them altogether.
 
 ```php
-Numverify::verify();
+Numverify::setNumber("1234567890")->setCountryCode("GB")->verify();
+```
+
+###### Shorthand method
+
+You can also just pass the phone number and the country code through the `verify()` method
+
+```php
+Numverify::verify("+441234567890");
+// OR
+Numverify::verify("1234567890", "GB");
+```
+
+Or use the `numverify()` helper function.
+
+```php
+numverify("1234567890");
+// OR
+numverify("1234567890", "GB");
 ```
 
 ###### Just return validation result
@@ -63,12 +74,6 @@ Numverify::verify();
 // Returns either turn or false depending on api result
 
 Numverify::isValid();
-```
-
-###### Set Number and Country Together
-
-```php
-Numverify::setNumber("1234567890")->setCountryCode("GB")->verify();
 ```
 
 
